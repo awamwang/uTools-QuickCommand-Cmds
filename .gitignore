@@ -1,0 +1,15 @@
+\.idea/
+\.cache/
+\.nyc_output/
+\.parcel-cache
+node_modules/
+.DS_Store
+*.log
+explorations
+TODOs.md
+dist/*
+coverage
+RELEASE_NOTE*.md
+cypress/videos/
+cypress/screenshots/
+docs/

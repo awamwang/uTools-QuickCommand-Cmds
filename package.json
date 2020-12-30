@@ -1,0 +1,26 @@
+{
+  "name": "uTools-QuickCommand-Cmds",
+  "version": "1.0.0",
+  "description": "[uTools](https://u.tools/)的[快捷命令](https://github.com/fofolee/uTools-QuickerCommand)插件的一些脚本",
+  "main": ".prettierrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awamwang/uTools-QuickCommand-Cmds.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/awamwang/uTools-QuickCommand-Cmds/issues"
+  },
+  "homepage": "https://github.com/awamwang/uTools-QuickCommand-Cmds#readme",
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "prettier": "^2.2.1"
+  }
+}
