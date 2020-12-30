@@ -1,0 +1,31 @@
+{
+    "features": {
+        "code": "professional_1z7e3g4mrbb",
+        "explain": "用js(nodejs) URL对象解析url",
+        "cmds": [
+            "js-url",
+            "URL",
+            {
+                "type": "regex",
+                "label": "js-url",
+                "match": "/^(\\s+)?(http|https|ftp):\\/\\/([a-zA-Z0-9\\.\\-]+(:[a-zA-Z0-9\\.&amp;%\\$\\-]+)*@)?(localhost|(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\\-]+\\.)*[a-zA-Z0-9\\-]+\\.[a-zA-Z]{2,4})(:[0-9]+)?(\\/[^/][a-zA-Z0-9\\.\\,\\?\\'\\\\/\\+&amp;%\\$#\\=~_\\-@]*)*(\\s+)?$/i",
+                "minLength": 1,
+                "maxLength": 200000
+            }
+        ],
+        "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAACq0lEQVRYR+2WT0gUURzHv7+ZacEgcxFBK6lL0B8wLAkpDITqKkRChxCCIEp/bxxdqFtCHbKwbedhpbcIApUu3QyJDlvQIQiCAj1EB6MOWx2d1plfjLmxLGu6jawe5t3ezO/35sPn/X7vDWGTD9rkfIgBV9qhTCbTZZpmne/7LUR0SCl1slzsigZd1x0HcEJEvDCR/oxaIjrS19eXKyzmuu57EQmWYxL5fL5rcHBwdrXSSafTTZZlTQDoEJEPSqmDFQEODw9vq6mpOUxEL5cTpxcXFy84jvMVgBQBNgA4Q0Q3PM87kEqlQvi/7/8FqrV2ANwF8I6ZWysCDIPT6XSdZVk/lhPHmflSuUW01scBTDLzztXMFb/XWtsA7sWApQa7u7vNzs7O2oWFha2mae42DON7LpebTSaT7YZhbBeRF0opb8MMjoyMNCcSiWkA+8MtFZFJAHVEdDqc+77f3t/f/2bDAIsaaJ6IdgD47Pv+ecMwronIq2w2e3tqasrfcECt9UcA+0TkilLqQWkDVRtwgpl3lXTpEiCAs8z8dN0Bh4aGEvX19UsHtYjMKKVOlTtGwluBiDJKqT1VBQw/5rruFyJqAvCNmRtXOAcfiQgppXqqDqi1vgMgFTZfEAQ9tm0/KYZwXbeDiJ4HQdBi2/Zc1QFHR0cbgyCYAVC4K5+JyGsi8kWkjYi6QtHMfLUEvIGI3gJoBvAwn8/fHBgYmC/q8LBerxPRRRGZ833/qOM4P0t3aE2/W2NjY1s8z7tMROcAJAFYIvILwCfTNG/19vZmS8y1icj90HrhOREJMx8rzLXWjwHsFZGlezv8E2Hm9v8CrOR+Xe/YNRlc749Wsl4MWImtcrGxwdhgVANR8+MajA1GNRA1P67B2GBUA1Hz4xqMDUY1EDU/rsGoBn8DfyRjOPfy8R8AAAAASUVORK5CYII=",
+        "platform": [
+            "win32",
+            "darwin",
+            "linux"
+        ]
+    },
+    "program": "quickcommand",
+    "cmd": "const URLPattern = /^(\\s+)?(http|https|ftp):\\/\\/([a-zA-Z0-9\\.\\-]+(:[a-zA-Z0-9\\.&amp;%\\$\\-]+)*@)?(localhost|(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\\-]+\\.)*[a-zA-Z0-9\\-]+\\.[a-zA-Z]{2,4})(:[0-9]+)?(\\/[^/][a-zA-Z0-9\\.\\,\\?\\'\\\\/\\+&amp;%\\$#\\=~_\\-@]*)*(\\s+)?$/\nconst ParseHash = true\nlet options = []\n\nfunction normalizeUrl(url) {\n    if (ParseHash) {\n        return url.replace('/#', '')\n    }\n\n    return url\n}\n\nfunction showResult() {\n    quickcommand.showSelectList(options, { optionType: 'json' })\n        .then(choise => {\n            console.log(choise.description)\n            utools.copyText(choise.description)\n        })\n\n}\n\ngetPatternInput(URLPattern, { inputPlaceholder: '请输入url' }).then((str) => {\n    str = normalizeUrl(str)\n    const urlObj = new URL(str)\n\n    for (let key in urlObj) {\n        if (!['toString', 'toJSON'].includes(key)) {\n            if (key === 'searchParams') {\n                try {\n                    // 直接用forEach会导致脚本异常退出，所以先转为Array\n                    urlObj[key] && Array.from(urlObj[key].entries()).forEach(([k, v]) => {\n                        options.push({\n                            title: `[query]${k}`,\n                            description: v\n                        })\n                    })\n\n                } catch (err) {\n                    console.log(err)\n                }\n            } else {\n                options.push({\n                    title: key,\n                    description: urlObj[key]\n                })\n            }\n        }\n    }\n\n    showResult()\n})\n\n\n// ############ getPatternInput #############\n\nfunction handleRegexInput(cb) {\n    let inputStr = (quickcommand.enterData.payload || '').trim()\n    if (typeof cb === 'function') {\n        cb(inputStr)\n    } else {\n        return Promise.resolve(inputStr)\n    }\n}\n\n/**\n * 依次从剪切板/payload/输入框中获取符合指定Pattern的输入，获取失败则报错，成功则执行回调方法\n * @param {*} pattern\n * @param {*} cb\n * @param {*} options\n * @return {Promise|void} 传入cb，则以回调模式执行，否则返回Promise\n */\nfunction getPatternInput(pattern, cb, options = {}) {\n    // 支持不传cb\n    if (typeof cb === 'object') {\n        options = cb\n        cb = null\n    }\n\n    if (quickcommand.enterData.type == 'regex') {\n        return handleRegexInput(cb)\n    }\n\n    let inputStr = (`{{ClipText}}` || '').trim()\n    let runner = (new Promise((resolve, reject) => {\n        if (!pattern.test(inputStr)) {\n            return quickcommand.showInputBox([options.inputPlaceholder || '输入']).then((values) => {\n                inputStr = values[0]\n\n                if (pattern.test(inputStr)) {\n                    resolve(inputStr)\n                } else {\n                    reject(inputStr)\n                }\n            })\n        } else {\n            resolve(inputStr)\n        }\n    })).catch((err) => {\n        console.log(err)\n        quickcommand.showMessageBox('错误的输入', 'error')\n    })\n\n    if (typeof cb === 'function') {\n        runner.then(cb)\n    } else {\n        return runner\n    }\n}",
+    "output": "nothing",
+    "hasSubInput": false,
+    "scptarg": "",
+    "tags": [
+        "code"
+    ]
+}
