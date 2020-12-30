@@ -1,0 +1,24 @@
+{
+    "features": {
+        "code": "key_2q6n0c18t80",
+        "explain": "outlook按照特定模板创建新邮件",
+        "cmds": [
+            "邮件",
+            "outlook"
+        ],
+        "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAEn0lEQVRYR+2YX2wUVRSHvzM77cKubalAIKlBo8FEkWCJUehMqWhEBKpS/mhMMBBDTY3bboOiiT5ofBET3aEKoiISfRDoC8EGotFUu90WUSQlNiE8KEj0wRhjaSy0251rZrZAurvdne12n+S+7d5zz/3md849584IUz02fRmkrFQYOjfK/i2XC3Uvk3bQFK2kpGQWxOcg2mI0lgF1KGYiCIp2LGPjpP2PLcwFKLT2TEMbDjKslaHrdSCPgL0CkRlZNy8a4ObOaVTo9Yisc2GE8kmpMGWATs7cGOxDpByRAEoF3BAVOqYMMHS8HD0xUChP2vrrgIVKel3BQhWECyi+z9+NOocvvoO3l//lrBWKd0h+Q9k9eQOKVANfYZnNxQacXCdp7fkF6CJSs9kr4AVG7Xp031kqlg7T3+tn9nAVpaVHEO6YUKF8D8n9nTp3+7tB3QscwDKe8gIYpdRfz4570utk4xcBgpXtIKsyQuYD+EJfkPjg12hUAf0ohrDMdTkA1WXiiTt5r+5X3PZX+grCbdjqI9rMTheqOToPn3YW8E+6UIe6ZqP7OlDAPyN1VOifIFoAy3gsO6DiHSxjGxsO+bip6jCw5hqE3Eek5oT7Oxz7FGFTBhV/B/UwEbN/wjTYFruZhDqC4g/64vV8u3yUlujnaBIkYj6aHTChHnCVCseWIow/jUodwzKToW3t3ghyMAOEkxZDJOx62mpPps03fzcfzXcMOIllPgmuhiQBfUEiNTkAR7iFXcZ5wrEmhN0pG9iMDgR4d9Uwoe4l6NKbMcQ2/WgqTFytZFfttZrYfHw+vtEuFB1Y5tZxaz0reHFwJh+v/JuW2BtovJoGcIk57DH+pLV7AcjPE+ZgS8/zaOotVOIhrGUxmqK34tdOAXuwjJfS1nkGvAIQjm1H2JHmaECVs88cJNRTja5+Spu37XZ21iZv1OHeBsRux7a3INpebHmRtpqdGXPTAfR0SGzfInYuOU0oWo+uHUlxdoaIkayB4dhqhI50BdUhLPOJq/+HuxYjvpMk7AbazMMgyZxLHUnA6VjG49kPibKfxqr9jO3dZcQ5D1J51ZeSZ7Bq9o0BWggtGUJ8EMtwkv/aCB31u3mbbSRD7CdiNuQA5Acsw6nqzkldgJLdCAuxeZ/Kitd57a4Rnuuci7/UqYNlngCzko1NegZ07JXaimXundCv60wbr9IVY0W6gl4BRZuGZazNrqALSBzYRmLgw3GhCZ+aAZfeRNSzE+5ZEKAEsa4W6qPl6BW53kkGUOoAcAZkEYKT/NOzClIYYBmW6XYuIeQJ0EtwxtsUAqhp5USM1cUGPIFoqR0o94OqRBMip4kYjcUGjIO6lE4kgqgSEB1EAzUCysl1x/ZfFBcZTax1b1FFDvHkbtQpT1TMHPy/ALqtTC7mzt48LfK58mdxLTR+UEJgwcsgBlCFyCxQswA9T6TUMjNFIc5EsUH5mBs10bQViPYg2PPcL18QQKF7+vo1ZQrmK5N7/7PXo1iPyO1ZWl0RFfQK3fhjCYHBIAluAL0an7YG1EKUo7F8g2Wk38S9+h6zK/xDZZ4b5mt+HTBfxVLt/wMcggBH0x2UvwAAAABJRU5ErkJggg==",
+        "platform": [
+            "win32",
+            "darwin",
+            "linux"
+        ]
+    },
+    "program": "quickcommand",
+    "cmd": "const TemplateDir = \"C:\\\\00awam\\\\Docs\\\\outlook模板\\\\\"\n\nconst TemplateMap = {\n    '模板目录': TemplateDir,\n    'asr': 'asr-workflow转测.msg',\n    'workflow': 'asr-workflow转测.msg',\n    'spt': 'spt转测.msg',\n}\n\nconst 选项列表 = Object.keys(TemplateMap)\n\nquickcommand.showSelectList(选项列表).then(choise => {\n    if (choise.text === '模板目录') {\n        utools.shellOpenPath(TemplateDir)\n        return\n    }\n\n\n    if (!TemplateMap[choise.text]) {\n        quickcommand.showMessageBox('缺少指定模板')\n        return\n    }\n\n    let fullPath = path.resolve(TemplateDir, TemplateMap[choise.text])\n    console.log(`打开模板文件-${fullPath}`)\n\n    utools.shellOpenPath(fullPath)\n})",
+    "output": "text",
+    "hasSubInput": false,
+    "scptarg": "",
+    "tags": [
+        "work"
+    ]
+}
